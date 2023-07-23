@@ -1,6 +1,10 @@
-import AuthForm from "./auth-form";
+"use client"
+
+import Login from "./components/login";
+import MagicLinkSignUp from "./components/signup";
 
 export default function Home() {
+ 
   return (
     <div className="row">
       <div className="col-6">
@@ -11,9 +15,7 @@ export default function Home() {
           simple, secure.
         </p>
       </div>
-      <div className="col-6 auth-widget">
-        <AuthForm />
-      </div>
+   <Login /> 
     </div>
   );
 }
