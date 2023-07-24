@@ -10,6 +10,10 @@ export default function Login() {
   const supabase = createClientComponentClient();
   const router = useRouter();
 
+//TODO: Sanitize user inputs
+//TODO: add Zod 
+
+
   async function signInWithEmail() {
     if (!email || !password) {
       alert("Please enter your email and password");
