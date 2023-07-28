@@ -2,6 +2,9 @@ import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
 import LogOut from "../components/signout";
+import Fetcher from "../dataFetching/page";
+import DisplayGaleries from "../components/admin/displayGaleries";
+import CreateGalery from "../components/admin/createGalery";
 
 export default async function Homepage() {
   const supabase = createServerComponentClient({ cookies });
@@ -17,6 +20,7 @@ export default async function Homepage() {
     <div>
       <h1>Homepage</h1>
       <LogOut />
+      <DisplayGaleries />
     </div>
   );
 }

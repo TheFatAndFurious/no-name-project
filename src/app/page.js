@@ -1,5 +1,6 @@
 "use client"
 
+import Fetcher from "@/pages/fetcher/page";
 import Login from "./components/login";
 import MagicLinkSignUp from "./components/signup";
 
@@ -16,6 +17,7 @@ export default function Home() {
         </p>
       </div>
    <Login /> 
+   <Fetcher />
     </div>
   );
 }
