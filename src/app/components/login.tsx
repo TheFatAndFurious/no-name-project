@@ -53,7 +53,7 @@ export default function Login() {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      <button onClick={signInWithEmail}>Se connecter</button>
+      <button className="btn-primary" onClick={signInWithEmail}>Se connecter</button>
       <p>{message}</p>
       <button onClick={signInWithGoogle}>Se connecter avec Google</button>
     </div>

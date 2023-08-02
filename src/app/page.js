@@ -1,23 +1,22 @@
 "use client"
 
-import Fetcher from "@/pages/fetcher/page";
 import Login from "./components/login";
 import MagicLinkSignUp from "./components/signup";
+import { useState } from "react";
 
 export default function Home() {
- 
+ const [hasAnAccount, setHasAnAccount] = useState(false)
+
+ const handleClick = () => {
+  setHasAnAccount(!hasAnAccount);
+ }
+
   return (
     <div className="row">
-      <div className="col-6">
-        <h1 className="header">Supabase Auth + Storage</h1>
-        <p className="">
-          Experience our Auth and Storage through a simple profile management
-          example. Create a user profile and upload an avatar image. Fast,
-          simple, secure.
-        </p>
-      </div>
-   <Login /> 
-   <Fetcher />
+
+   {hasAnAccount ? <MagicLinkSignUp /> : <Login /> }
+
+    <button className="ntn-primary" onClick={handleClick}>{hasAnAccount ? <p>Deja inscrit ?</p> : <p>Creer un compte</p>}</button>
     </div>
   );
 }
