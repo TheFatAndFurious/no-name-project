@@ -6,7 +6,7 @@ export default function MagicLinkSignUp() {
   const supabaseClient = createClientComponentClient();
   const [email, setEmail] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false)
-  const [error, setError] = useState<string | null>(null)
+  const [error, setError] = useState<any | null>(null)
 
   async function signUp() {
     setIsLoading(true)
@@ -19,7 +19,7 @@ export default function MagicLinkSignUp() {
       },
     });
   } catch(error) {
-    setError(error.message)
+    setError("grosse erreur")
   } finally {
     setIsLoading(false)
   }
