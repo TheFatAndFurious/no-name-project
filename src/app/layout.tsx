@@ -4,6 +4,8 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { cookies } from "next/headers";
 
+export const dynamic = 'force-dynamic'
+
 export const metadata: Metadata = {
   title: "No-name-project",
   description: "Thou shall succeed",
