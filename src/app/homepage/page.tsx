@@ -5,6 +5,7 @@ import LogOut from "../components/signout";
 import Fetcher from "../dataFetching/page";
 import DisplayGaleries from "../components/admin/displayGaleries";
 import CreateGalery from "../components/admin/createGalery";
+import Link from "next/link";
 
 export default async function Homepage() {
   const supabase = createServerComponentClient({ cookies });
@@ -19,6 +20,7 @@ export default async function Homepage() {
   return (
     <div>
       <h1>Homepage</h1>
+      <a href="./testDePapa">clic clic</a>
       <LogOut />
       <DisplayGaleries />
     </div>
