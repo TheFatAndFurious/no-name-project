@@ -25,9 +25,9 @@ import nodemailer from "nodemailer"
 export async function POST(request: NextRequest) {
   try {
     const data = await request.json(); // Récupérer les données envoyées depuis le frontend
-    // const email = data.email;
+    //const email = data.email;
 
-    // // Vérifier que l'adresse e-mail est présente et non vide
+    // Vérifier que l'adresse e-mail est présente et non vide
     // if (!email || typeof email !== "string" || email.trim() === "") {
     //   return NextResponse.json({ error: "Invalid email address" }, { status: 400 });
     // }
@@ -36,7 +36,7 @@ export async function POST(request: NextRequest) {
       from: "unDingue",
       to: "mrguerrilla@gmail.com",
       subject: "we did it",
-      text: data,
+      text: JSON.stringify(data, null, 2),
     };
 
     await transporter.sendMail(mailOptions);
