@@ -11,24 +11,39 @@ import nodemailer from "nodemailer"
      pass: process.env.SMTP_PASSWORD
    }
  })
+ export async function GET(request: Request) {
+  return new Response('Hello, Next.js!', {
+    status: 200,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+    },
+  })
+}
 
- export async function POST(request: NextRequest) {
- 
- const mailOptions = {
-   from: 'babakar@me.com',
-   to: 'mrguerrilla@gmail.com',
-   subject: 'we did it',
-   text: 'congrats my guy'
- }
-   console.log("coucou")
+export async function POST(request: NextRequest) {
+  try {
+    const data = await request.json(); // Récupérer les données envoyées depuis le frontend
+    const email = data.email;
+
+    // Vérifier que l'adresse e-mail est présente et non vide
+    if (!email || typeof email !== "string" || email.trim() === "") {
+      return NextResponse.json({ error: "Invalid email address" }, { status: 400 });
+    }
+
+    const mailOptions = {
+      from: email,
+      to: "mrguerrilla@gmail.com",
+      subject: "we did it",
+      text: "congrats my guy",
+    };
+
     await transporter.sendMail(mailOptions);
+    return NextResponse.json({ message: "Email sent successfully" }, { status: 200 });
+  } catch (error) {
+    return NextResponse.json({ error: "Failed to send email" }, { status: 500 });
+  }
+}
 
-  //  return request.status(200).json({ message: "Email sent successfully" });
- }
 
-
-// export async function GET(request:NextRequest) {
-// let json_response = { status: "success"}
-
-// return NextResponse.json(json_response)
-// }
