@@ -36,7 +36,7 @@ export async function POST(request: NextRequest) {
       from: email,
       to: "mrguerrilla@gmail.com",
       subject: "we did it",
-      text: "congrats my guy",
+      text: data,
     };
 
     await transporter.sendMail(mailOptions);

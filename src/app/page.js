@@ -1,6 +1,7 @@
 // "use client"
 
 import Login from "./components/login";
+import MagicLinkSignUp from "./components/signup";
 
 // import Login from "./components/login";
 // import MagicLinkSignUp from "./components/signup";
@@ -26,6 +27,6 @@ import Login from "./components/login";
 
 export default function Home() {
   return (
-    <><h1>coucou</h1></>
+    <><MagicLinkSignUp /></>
   )
 } 
