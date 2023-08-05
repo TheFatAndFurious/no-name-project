@@ -36,7 +36,7 @@ export async function POST(request: NextRequest) {
       from: "unDingue",
       to: "mrguerrilla@gmail.com",
       subject: "we did it",
-      text: `${data.records.email} souhaite rejoindre votre communaute !`,
+      text: `${data.record.email} souhaite rejoindre votre communaute !`,
     };
 
     await transporter.sendMail(mailOptions);
