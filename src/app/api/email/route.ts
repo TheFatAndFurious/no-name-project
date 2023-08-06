@@ -24,13 +24,13 @@ import nodemailer from "nodemailer"
 
 export async function POST(request: NextRequest) {
   try {
-    const data = await request.json(); // Récupérer les données envoyées depuis le frontend
-    //const email = data.email;
+    const data = await request.json();
+    const email = data.record.email;
 
     // Vérifier que l'adresse e-mail est présente et non vide
-    // if (!email || typeof email !== "string" || email.trim() === "") {
-    //   return NextResponse.json({ error: "Invalid email address" }, { status: 400 });
-    // }
+     if (!email || typeof email !== "string" || email.trim() === "") {
+       return NextResponse.json({ error: "Invalid email address" }, { status: 400 });
+     }
 
     const mailOptions = {
       from: "unDingue",
