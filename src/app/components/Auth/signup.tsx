@@ -1,6 +1,7 @@
 'use client'
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useState } from "react";
+import Message from "../Message";
 
 
 export default function MagicLinkSignUp() {
@@ -8,6 +9,7 @@ export default function MagicLinkSignUp() {
   const [email, setEmail] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [error, setError] = useState<any | null>(null)
+  const [messageText, setMessagetext] = useState<string | null>(null)
 
   async function signUp() {
     setIsLoading(true)
@@ -21,8 +23,10 @@ export default function MagicLinkSignUp() {
     });
   } catch(error) {
     setError("grosse erreur")
+    setMessagetext("une erreur est survenu")
   } finally {
     setIsLoading(false)
+    setMessagetext("Compte cree avec succes")
   }
   }
 
@@ -40,7 +44,7 @@ export default function MagicLinkSignUp() {
         />
         <button type="submit" disabled={isLoading}>Submit</button>
       </form>}
-      {error ?? <p>{error}</p> }
-    </div>
+      <Message text={messageText} result="success"/>
+      </div>
   );
 }
