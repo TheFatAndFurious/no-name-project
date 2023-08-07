@@ -10,16 +10,15 @@ export default function Login() {
   const supabase = createClientComponentClient();
   const router = useRouter();
 
-//TODO: Sanitize user inputs
-//TODO: add Zod 
-
+  //TODO: Sanitize user inputs
+  //TODO: add Zod
 
   async function signInWithEmail() {
     if (!email || !password) {
       alert("Please enter your email and password");
     }
     try {
-      const { data, error } = await supabase.auth.signInWithPassword({
+      const { data } = await supabase.auth.signInWithPassword({
         email: email,
         password: password,
       });
@@ -53,7 +52,9 @@ export default function Login() {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      <button className="btn-primary" onClick={signInWithEmail}>Se connecter</button>
+      <button className="btn-primary" onClick={signInWithEmail}>
+        Se connecter
+      </button>
       <p>{message}</p>
       <button onClick={signInWithGoogle}>Se connecter avec Google</button>
     </div>

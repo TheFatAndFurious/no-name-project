@@ -4,25 +4,24 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 export async function middleware(req: NextRequest) {
-    const res = NextResponse.next()
-    const supabase = createMiddlewareClient({req, res})
+  const res = NextResponse.next();
+  const supabase = createMiddlewareClient({ req, res });
 
-    const {
-        data: { user },
-    } = await supabase.auth.getUser()
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
 
-    if (user && req.nextUrl.pathname === '/') {
-        return NextResponse.redirect(new URL('account', req.url))
-    }
+  if (user && req.nextUrl.pathname === "/") {
+    return NextResponse.redirect(new URL("account", req.url));
+  }
 
-    if (!user && req.nextUrl.pathname !== '/') {
-        return NextResponse.redirect(new URL('/', req.url))
-    }
+  if (!user && req.nextUrl.pathname !== "/") {
+    return NextResponse.redirect(new URL("/", req.url));
+  }
 
-    return res
-
+  return res;
 }
 
 export const config = {
-    matcher: ['/', '/account']
-}
+  matcher: ["/", "/account"],
+};

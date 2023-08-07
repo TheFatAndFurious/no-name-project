@@ -20,7 +20,7 @@
 //     const transporter = nodemailer.createTransport({
 //       ...smtpOptions,
 //     })
-  
+
 //     return await transporter.sendMail({
 //       from: process.env.SMTP_FROM_EMAIL,
 //       ...data,
