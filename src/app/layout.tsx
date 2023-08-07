@@ -1,8 +1,9 @@
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
-import Navbar from "./components/Navbar";
+import Navbar from "./components/Navigation/Navbar";
 import "./globals.css";
 import type { Metadata } from "next";
 import { cookies } from "next/headers";
+import Footer from "./components/Navigation/Footer";
 
 export const dynamic = 'force-dynamic'
 
@@ -27,7 +28,7 @@ export default async function RootLayout({
       <body>
         <Navbar session={session}/>
         {children}
-        
+        <Footer />
       </body>
     </html>
   );

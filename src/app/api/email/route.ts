@@ -1,5 +1,10 @@
+//TODO: CREATE NICE LOOKING MAIL WITH EACT MAIL
+//TODO: CHANGE WEBHOOK TABLE AND CREATE A NEW TABLE THAT WILL ADD EVERY USER THAT CLICKED THE MAGIC LINK
+//TODO: SHOULD WE ADD A MESSAGE INPUT FOR THE USER TO IDENTIFY HIMSELF TO THE ADMIN ?
+//AT LAUNCH: CHANGE GMAIL INFOS FOR THE ADMIN ONES
+
+
 import { NextRequest, NextResponse } from "next/server";
-// import { supabase } from "../../../supabase";
 import nodemailer from "nodemailer"
 
  const transporter =nodemailer.createTransport({
