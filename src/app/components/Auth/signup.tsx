@@ -2,6 +2,7 @@
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useState } from "react";
 import Message from "../Message";
+import Input from "../Input";
 
 export default function MagicLinkSignUp() {
   const supabaseClient = createClientComponentClient();
@@ -9,6 +10,7 @@ export default function MagicLinkSignUp() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<any | null>(null);
   const [messageText, setMessagetext] = useState<string | null>(null);
+
 
   async function signUp() {
     setIsLoading(true);
@@ -31,24 +33,24 @@ export default function MagicLinkSignUp() {
 
   return (
     <div>
-      <h1>Creation de compte</h1>
-      <p>
-        Pensez a confirmer la creation de compte depuis l'email que vous aurez
-        recu a l'adresse renseignee, l'administrateur du site devra ensuite
-        valider votre inscription pour vous permettre l'acces
-      </p>
+      <h1 className="text-xl font-bold text-center">Creez votre compte</h1>
       {isLoading ? (
         <span className="loading loading-infinity loading-lg"></span>
       ) : (
         <form onSubmit={signUp}>
           <label>Email</label>
-          <input
+          <Input
             type="email"
             name="email"
             onChange={(e) => setEmail(e.target.value)}
+            placeholder="Saisissez votre adresse mail ici"
           />
-          <button type="submit" disabled={isLoading}>
-            Submit
+          <button 
+          className="mx-auto m-2 bg-accent-primary"
+          type="submit" 
+          disabled={isLoading}
+          >
+            ENVOYER
           </button>
         </form>
       )}

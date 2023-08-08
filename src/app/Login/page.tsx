@@ -6,18 +6,24 @@
 import { useState } from "react";
 import MagicLinkSignUp from "../components/Auth/signup";
 import Login from "../components/Auth/login";
+import Wrapper from "../components/Wrapper";
+import clsx from "clsx";
 
 export default function Authenticate() {
   const [alreadyMember, setAlreadyMember] = useState<boolean>(false);
   return (
     <>
-      {!alreadyMember ? <MagicLinkSignUp /> : <Login />}
-      <button
-        className="btn btn-primary"
-        onClick={() => setAlreadyMember(!alreadyMember)}
-      >
-        Vous avez deja un compte ?
-      </button>
+    <div className="h-screen flex items-center">
+      <Wrapper>
+        {!alreadyMember ? <MagicLinkSignUp /> : <Login />}
+        <button
+          className="btn btn-primary"
+          onClick={() => setAlreadyMember(!alreadyMember)}
+        >
+          {clsx({"Vous avez deja un compte ?": !alreadyMember, "Creer un compte": alreadyMember})}
+        </button>
+      </ Wrapper>
+        </div>
     </>
   );
 }

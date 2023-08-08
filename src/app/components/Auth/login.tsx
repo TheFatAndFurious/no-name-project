@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useRouter } from "next/navigation";
+import Input from "../Input";
 
 export default function Login() {
   const [password, setPassword] = useState("");
@@ -40,13 +41,13 @@ export default function Login() {
   }
   return (
     <div className="col-6 auth-widget">
-      <input
+      <Input
         type="text"
         placeholder="Email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
-      <input
+      <Input
         type="password"
         placeholder="Password"
         value={password}
@@ -56,7 +57,7 @@ export default function Login() {
         Se connecter
       </button>
       <p>{message}</p>
-      <button onClick={signInWithGoogle}>Se connecter avec Google</button>
+      <button onClick={signInWithGoogle}>Se connecter avec Google </button>
     </div>
   );
 }

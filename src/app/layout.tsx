@@ -23,7 +23,7 @@ export default async function RootLayout({
   } = await supabase.auth.getSession();
 
   return (
-    <html lang="en" data-theme="cupcake">
+    <html lang="en" data-theme="pastel">
       <body>
         <Navbar session={session} />
         {children}
