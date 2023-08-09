@@ -3,10 +3,10 @@ describe("Login Component", () => {
       const email = "mrguerrilla@example.com";
       const password = "coucou";
   
-      cy.visit("https://no-name-project.vercel.app/Login");
+      cy.visit("https://no-name-project.vercel.app/Login"); // Assurez-vous de remplacer le chemin par le chemin réel de votre composant Login
   
-      cy.get("#email").type(email);      
-      cy.get('Input[type="text"]').type(password);
+      cy.get('input[type="email"]').type(email);      
+      cy.get('Input[type="password"]').type(password);
       cy.get(".btn-primary").click();
   
       // Vérifier que vous êtes redirigé après une connexion réussie
@@ -20,7 +20,7 @@ describe("Login Component", () => {
       cy.visit("https://no-name-project.vercel.app/Login");
   
       cy.get('Input[type="text"]').type(incorrectEmail);
-      cy.get('Input[type="password"]').type(incorrectPassword);
+      cy.get('input[type="password"]').type(incorrectPassword);
       cy.get(".btn-primary").click();
   
       // Vérifier que le message d'erreur est affiché
