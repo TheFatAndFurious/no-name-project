@@ -5,9 +5,10 @@ describe("Login Component", () => {
   
       cy.visit("https://no-name-project.vercel.app/Login"); // Assurez-vous de remplacer le chemin par le chemin réel de votre composant Login
   
-      cy.get('input[type="email"]').type(email);      
+      cy.get(".btn-primary").click()
+      cy.get("#email").type(email);      
       cy.get('Input[type="password"]').type(password);
-      cy.get(".btn-primary").click();
+      cy.get("#send").click();
   
       // Vérifier que vous êtes redirigé après une connexion réussie
       cy.url().should("include", "/homepage");
