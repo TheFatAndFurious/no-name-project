@@ -46,11 +46,11 @@ export default function MagicLinkSignUp() {
             placeholder="Saisissez votre adresse mail ici"
           />
           <button 
-          className="mx-auto m-2 bg-accent-primary"
+          className="mx-auto m-2 bg-blue-500 font-semibold flex self-end"
           type="submit" 
           disabled={isLoading}
           >
-            ENVOYER
+            Envoyer
           </button>
         </form>
       )}

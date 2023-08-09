@@ -5,16 +5,18 @@ interface InputProps {
     type?: string
     name?: string
     value?: string
+    id?: string
     onChange: (event: ChangeEvent<HTMLInputElement>) => void 
 }
-export default function Input({placeholder, type, name, onChange}: InputProps) {
+export default function Input({placeholder, type, name,id,  onChange}: InputProps) {
     return (
         <input 
-            className="bg-white text-black m-2"
+            className="bg-white text-black my-2 border-solid border-accent border-2 mx-auto focus:border-blue-800 outline-none"
             placeholder={placeholder}
             type={type}
             name={name}
             onChange={onChange}
+            id={id}
             />
     )
 }

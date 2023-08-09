@@ -45,12 +45,14 @@ export default function Login() {
         type="text"
         placeholder="Email"
         value={email}
+        id="email"
         onChange={(e) => setEmail(e.target.value)}
       />
       <Input
         type="password"
         placeholder="Password"
         value={password}
+        id="password"
         onChange={(e) => setPassword(e.target.value)}
       />
       <button className="btn-primary" onClick={signInWithEmail}>
