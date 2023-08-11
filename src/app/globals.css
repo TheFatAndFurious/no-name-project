@@ -9,8 +9,8 @@ body {
   --custom-bg-color: #F5F5F5;
   --custom-panel-color: #222;
   --custom-box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.8);
-  --custom-color: #fff;
-  --custom-color-brand: #24b47e;
+  --custom-color: black;
+  --custom-color-brand: blue;
   --custom-color-secondary: #666;
   --custom-border: 1px solid #333;
   --custom-border-radius: 5px;
@@ -243,7 +243,7 @@ input[disabled] {
 button,
 .button {
   color: var(--custom-color);
-  border: var(--custom-border);
+  /* border: var(--custom-border); */
   background-color: var(--custom-bg-color);
   display: inline-block;
   text-align: center;

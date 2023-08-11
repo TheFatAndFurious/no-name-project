@@ -55,7 +55,7 @@ export default function Login() {
         id="password"
         onChange={(e) => setPassword(e.target.value)}
       />
-      <button id="send" className="btn-primary" onClick={signInWithEmail}>
+      <button id="send"className="btn-primary" onClick={signInWithEmail}>
         Se connecter
       </button>
       <p>{message}</p>
