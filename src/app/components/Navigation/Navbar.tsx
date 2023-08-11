@@ -1,6 +1,7 @@
 import LogOut from "../Auth/signout";
 import Login from "../Auth/login";
 import { Session } from "@supabase/supabase-js";
+import Link from "next/link";
 
 interface NavbarProps {
   session: Session | null;
@@ -50,7 +51,7 @@ export default function Navbar({ session }: NavbarProps) {
             </li>
           </ul>
         </div>
-        <a className="btn btn-ghost normal-case text-xl">No-Name-Project</a>
+        <Link href="/" className="btn btn-ghost normal-case text-xl">No-Name-Project</Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
@@ -70,13 +71,18 @@ export default function Navbar({ session }: NavbarProps) {
               </ul>
             </details>
           </li>
+          { session && 
           <li>
-            <a>Item 3</a>
+            <Link href="/restricted">Galeries</Link>
+          </li>
+          }
+          <li>
+            <a>Contact</a>
           </li>
         </ul>
       </div>
       <div className="navbar-end">
-        {session ? <LogOut /> : <a href="./Login">Connexion / Inscription</a>}
+        {session ? <LogOut /> : <a href="./login">Connection</a>}
       </div>
     </div>
   );

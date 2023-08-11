@@ -12,7 +12,7 @@ export default function LogOut() {
     } catch (error) {
       console.error(error);
     }
-    router.push("/");
+    router.refresh();
   }
   return <button onClick={signOut}>Se deconnecter</button>;
 }

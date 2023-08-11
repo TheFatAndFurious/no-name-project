@@ -1,5 +1,6 @@
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
+import Wrapper from "../components/Wrapper";
 
 export default async function Unauthenticated() {
   const supabase = createServerComponentClient({ cookies });
@@ -8,8 +9,8 @@ export default async function Unauthenticated() {
   } = await supabase.auth.getSession();
 
   return (
-    <div>
-      <p>Vous devez etre connecte pour acceder a cette page</p>
-    </div>
+    <Wrapper>
+      <p>Hop hop hop, t'as carrement pas le droit...de visiter cette page</p>
+    </Wrapper>
   );
 }

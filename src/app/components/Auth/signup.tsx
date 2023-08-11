@@ -6,10 +6,10 @@ import Label from "../Label";
 import router, { useRouter } from "next/navigation";
 
 interface SignUpProps {
-  onSignUpSuccess: () => void
+  onSignUpSuccess?: () => void
 }
 
-export default function MagicLinkSignUp({onSignUpSuccess}: SignUpProps) {
+export default function EmailSignUp({onSignUpSuccess}: SignUpProps) {
   const supabaseClient = createClientComponentClient();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] =useState<string>("")
