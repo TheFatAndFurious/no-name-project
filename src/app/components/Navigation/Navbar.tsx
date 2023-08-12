@@ -82,7 +82,7 @@ export default function Navbar({ session }: NavbarProps) {
         </ul>
       </div>
       <div className="navbar-end">
-        {session ? <LogOut /> : <a href="./login">Connection</a>}
+        {session ? <LogOut /> : <a href="./connection">Connection</a>}
       </div>
     </div>
   );

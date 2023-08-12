@@ -12,7 +12,7 @@ export default function Authenticate() {
   return (
     <Wrapper>
       <Login />
-      <Link href="/signup">Vous n'avez pas encore de compte ?</Link>
+      <Link className="mx-auto mt-3" href="/signup">Vous n'avez pas encore de compte ?</Link>
     </Wrapper>
   );
 }

@@ -56,7 +56,7 @@ export default function EmailSignUp({onSignUpSuccess}: SignUpProps) {
             placeholder="Mot de passe"
           />
           <button 
-          className="mx-auto m-2 bg-blue-500 font-semibold flex self-end"
+          className="mx-auto m-2 bg-blue-500 font-semibold flex self-end hover:bg-blue-700 hover:text-white transition duration-300 disabled:bg-slate-500"
           type="submit" 
           disabled={isLoading}
           >

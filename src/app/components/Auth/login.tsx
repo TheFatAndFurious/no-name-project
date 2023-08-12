@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useRouter } from "next/navigation";
 import Input from "../Input";
+import Label from "../Label";
+import{ FcGoogle } from "react-icons/fc"
 
 export default function Login() {
   const [password, setPassword] = useState("");
@@ -40,7 +42,10 @@ export default function Login() {
     });
   }
   return (
-    <div className="col-6 auth-widget">
+    <div>
+      <h1 className="text-xl font-bold text-center text-black">Me connecter</h1>
+      
+      <Label htmlFor="email">Email</Label>
       <Input
         type="text"
         placeholder="Email"
@@ -48,6 +53,8 @@ export default function Login() {
         id="email"
         onChange={(e) => setEmail(e.target.value)}
       />
+
+      <Label htmlFor="email">Mot de passe</Label>
       <Input
         type="password"
         placeholder="Password"
@@ -55,11 +62,11 @@ export default function Login() {
         id="password"
         onChange={(e) => setPassword(e.target.value)}
       />
-      <button id="send"className="btn-primary" onClick={signInWithEmail}>
+      <button id="send"className="mx-auto m-2 bg-blue-500 font-semibold flex self-end hover:bg-blue-700 hover:text-white transition duration-300 disabled:bg-slate-500" onClick={signInWithEmail}>
         Se connecter
       </button>
       <p>{message}</p>
-      <button onClick={signInWithGoogle}>Se connecter avec Google </button>
+      <button onClick={signInWithGoogle} className="flex mx-auto items-center">Se connecter avec Google <FcGoogle  className="pl-1"/></button>
     </div>
   );
 }
