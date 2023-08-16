@@ -16,6 +16,7 @@ export default function FileUploadForm (){
         images.forEach((image, i) => {
             formData.append(image.name, image)
         })
+        console.log(formData.values())
         setUploading(true)
         await axios.post("api/upload", formData)
         setUploading(false)

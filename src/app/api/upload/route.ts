@@ -1,50 +1,37 @@
-import { NextResponse } from "next/server";
-import * as ftp from "basic-ftp"
-import { Readable } from "node:stream";
+import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3"
+import { NextResponse } from "next/server"
 
 
-export async function POST(req: Request) {
-    const formData = await req.formData();
+
+
+export async function POST(req: Request)  {
+    const formData = await req.formData()
     const formDataEntryValues = Array.from(formData.values());
-    const files: { name: string, buffer: Buffer }[] = [];
-
+    let file
+    let buffer
     for (const formDataEntryValue of formDataEntryValues) {
-        if (typeof formDataEntryValue === 'object' && 'arrayBuffer' in formDataEntryValue) {
-            const file = formDataEntryValue as unknown as Blob;
-            const buffer = Buffer.from(await file.arrayBuffer());
-            files.push({ name: file.name, buffer });
+        if(typeof formDataEntryValue === "object" && "arrayBuffer" in formDataEntryValue) {
+             file = formDataEntryValue as unknown as Blob;
+             buffer = Buffer.from(await file.arrayBuffer())
         }
+
     }
+    
+    const client = new S3Client({
+        region: process.env.AWS_REGION,
+    })
+       const command = new PutObjectCommand ({
+           Bucket: process.env.AWS_BUCKET_NAME,
+           Key: file?.name,
+           Body: buffer
+       })
+    
+       try {
+           const response = await client.send(command)
+           console.log(response)
+       } catch(error) {
+           console.error(error)
+       }
 
-
-    example()
-
-
-    async function example(){
-        const client = new ftp.Client()
-        client.ftp.verbose = true
-        try {
-            await client.access({
-            host: process.env.FTP_HOST,
-            user: process.env.FTP_USER,
-            password: process.env.FTP_PASSWORD,
-            // secure: false
-            })
-
-    for (const file of files) {
-        const readableStream = new Readable({
-            read() {
-                this.push(file.buffer);
-                this.push(null); // End the stream after pushing the buffer
-            }
-        });
-        
-        await client.uploadFrom(readableStream, `/domains/baroshilabs.com/public_html/images/${file.name}`);
-    }
-        }
-        catch(err){
-            console.log(err)
-        }
-        client.close()
-    }
+    return NextResponse.json({ success: true });
 }
