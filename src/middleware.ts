@@ -1,3 +1,5 @@
+// middleware update
+
 
 import { NextRequest, NextResponse } from "next/server";
 import { createMiddlewareClient } from "@supabase/auth-helpers-nextjs";
@@ -16,11 +18,12 @@ export async function middleware(req: NextRequest) {
       const redirectUrl = req.nextUrl.clone();
       redirectUrl.pathname = "/unauthenticated";
         return NextResponse.redirect(redirectUrl);
-    } else if (req.nextUrl.pathname.startsWith(adminPath)) {
-      const redirectUrl = req.nextUrl.clone();
-      redirectUrl.pathname = "/login";
-      return NextResponse.redirect(redirectUrl);
     }
+  }
+  if (req.nextUrl.pathname.startsWith(adminPath) && session?.user.role !== "admin") {
+  const redirectUrl = req.nextUrl.clone();
+  redirectUrl.pathname = "/unauthenticated";
+  return NextResponse.redirect(redirectUrl);
   }
 }
 
