@@ -1,8 +1,14 @@
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3"
+import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
+import { cookies } from "next/headers";
 import { NextResponse } from "next/server"
 
 
 export async function POST(req: Request)  {
+    const supabase = createServerComponentClient({ cookies });
+    const {
+      data: { session },
+    } = await supabase.auth.getSession();
     const formData = await req.formData()
     const formDataEntryValues = Array.from(formData.values());
     let file

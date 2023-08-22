@@ -4,8 +4,10 @@ import React, { useState } from "react"
 import CustomFileSelector from "./customFileSelector"
 import ImagePreview from "./ImagePreview"
 import axios from "axios"
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs"
 
 export default function FileUploadForm (){
+
     const [images, setImages] = useState<File[]>([])
     const [uploading, setUploading] = useState(false)
 
@@ -18,7 +20,9 @@ export default function FileUploadForm (){
         })
         console.log(formData.values())
         setUploading(true)
-        await axios.post("api/upload", formData)
+        await fetch("/api/upload", {
+            method: "POST",
+            body: formData})
         setUploading(false)
     }
     
