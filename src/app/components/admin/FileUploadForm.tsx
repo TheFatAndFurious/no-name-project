@@ -3,8 +3,6 @@
 import React, { useState } from "react"
 import CustomFileSelector from "./customFileSelector"
 import ImagePreview from "./ImagePreview"
-import axios from "axios"
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs"
 
 export default function FileUploadForm (){
 
