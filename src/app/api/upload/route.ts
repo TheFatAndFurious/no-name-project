@@ -5,28 +5,26 @@ import { NextResponse } from "next/server"
 export async function POST(req: Request)  {
 
     const formData = await req.formData()
-    console.log(formData)
     const files = Array.from(formData.values());
-    console.log(files)
     let uploadResults = []
 
     for (const file of files) {
-        const fileAsBlob = file as Blob
-        const buffer = Buffer.from(await fileAsBlob.arrayBuffer())
-        console.log(`blob is ${fileAsBlob}`)
+        console.log(file)
+        const fileAsFile = file as File
+        const buffer = Buffer.from(await fileAsFile.arrayBuffer())
         const client = new S3Client({
             region: process.env.AWS_REGION })
             const command = new PutObjectCommand ({
                 Bucket: process.env.AWS_BUCKET_NAME,
-                Key: file?.name,
+                Key: fileAsFile?.name,
                 Body: buffer
             })
             try {
                 const response = await client.send(command)
-                uploadResults.push({fileName: file.name, success: true})
+                uploadResults.push({fileName: fileAsFile.name, success: true})
             } catch(error) {
                 console.error(error)
-                uploadResults.push({fileName: file.name, success: false, errorMessage: error})
+                uploadResults.push({fileName: fileAsFile.name, success: false, errorMessage: error})
             }
         }
 
