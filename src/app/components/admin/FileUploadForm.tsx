@@ -3,6 +3,7 @@
 import React, { useState } from "react"
 import CustomFileSelector from "./customFileSelector"
 import ImagePreview from "./ImagePreview"
+import { POST } from "@/app/api/email/route"
 
 export default function FileUploadForm (){
 
@@ -12,16 +13,35 @@ export default function FileUploadForm (){
     async function handleSubmit(e:React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
 
-        const formData = new FormData();
-        images.forEach((image, i) => {
-            formData.append(image.name, image)
-        })
-        console.log(formData.values())
-        setUploading(true)
-        await fetch("/api/upload", {
+        const dataToCreateSignedUrl = images.map(image => ({
+            name: image.name, 
+            type: image.type
+        }))
+        console.log(dataToCreateSignedUrl)
+        const res = await fetch("/api/upload", {
             method: "POST",
-            body: formData})
-        setUploading(false)
+            body: JSON.stringify({ files: dataToCreateSignedUrl})
+        })
+
+        const formData = new FormData()
+        images.forEach((image, i) => {
+            return formData.append(image.name, image)
+        })
+        console.log(images)
+
+        const { urls } = await res.json()
+        console.log(urls)
+
+        for (let i = 0; i < images.length; i++) {
+            const sendIt = await fetch(urls[i], {
+                method: "PUT",
+                body: images[i]
+            })
+
+        }
+
+        
+
     }
     
     function handleFileSelected(e: React.ChangeEvent<HTMLInputElement>){
@@ -47,3 +67,4 @@ export default function FileUploadForm (){
         </form>
     )
 }
+
