@@ -3,45 +3,79 @@
 import React, { useState } from "react"
 import CustomFileSelector from "./customFileSelector"
 import ImagePreview from "./ImagePreview"
-import { POST } from "@/app/api/email/route"
+
 
 export default function FileUploadForm (){
-
     const [images, setImages] = useState<File[]>([])
     const [uploading, setUploading] = useState(false)
+    const [error, setError] = useState<string | null>(null)
+
+
+    async function getPreSignedUrls( files: { name: string, type: string}[]) {
+        const response = await fetch("/api/getPreSignedUrls", {
+            method: "POST", 
+            body: JSON.stringify({ files })
+        });
+
+        if(!response.ok) {
+            throw new Error("Failed to get pre-signed URLs")
+        }
+
+        return response.json()
+    }
+
+    async function uploadFilesToUrls(files:File[], urls:string[]){
+        const urlsToInsertInto: { url: string }[] = []
+
+        for(let i = 0; i < files.length; i++) {
+            const response = await fetch(urls[i], {
+                method: "PUT",
+                body: files[i],
+            })
+
+            if(!response.ok) {
+                throw new Error(`Failed to upload image ${i + 1}`)
+            } else {
+                urlsToInsertInto.push({ url: files[i].name})
+            }
+        }
+        return urlsToInsertInto;
+    }
+
+    async function insertUrlsToSupabase(urls: { url: string}[]) {
+        const response = await fetch("/api/insertUrlsToSupabase", {
+            method: "POST", 
+            body: JSON.stringify({ pictures: urls})
+        })
+
+        if (!response.ok) {
+            throw new Error("Failed to insert URLs to Supabase")
+        }
+    }
+
 
     async function handleSubmit(e:React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
+        setUploading(true)
+        setError(null)
 
-        const dataToCreateSignedUrl = images.map(image => ({
+        try {
+            const dataToCreateSignedUrl = images.map(image => ({
             name: image.name, 
             type: image.type
         }))
-        console.log(dataToCreateSignedUrl)
-        const res = await fetch("/api/upload", {
-            method: "POST",
-            body: JSON.stringify({ files: dataToCreateSignedUrl})
-        })
 
-        const formData = new FormData()
-        images.forEach((image, i) => {
-            return formData.append(image.name, image)
-        })
-        console.log(images)
+        const { urls } = await getPreSignedUrls(dataToCreateSignedUrl)
+        const urlsToInsert = await uploadFilesToUrls(images, urls)
+        await insertUrlsToSupabase(urlsToInsert)
 
-        const { urls } = await res.json()
-        console.log(urls)
-
-        for (let i = 0; i < images.length; i++) {
-            const sendIt = await fetch(urls[i], {
-                method: "PUT",
-                body: images[i]
-            })
-
+        alert("Upload successful !")
+        } catch (error) {
+            console.error(error)
+            setError("an error occured during upload")
+        } finally {
+            setUploading(false)
         }
-
-        
-
     }
     
     function handleFileSelected(e: React.ChangeEvent<HTMLInputElement>){
@@ -58,8 +92,9 @@ export default function FileUploadForm (){
                     accept="image/png, image/jpeg"
                     onChange={handleFileSelected} />
                     <button
+                        disabled={uploading}
                         type="submit"
-                        className="text-black bg-blue-400 ">
+                        className={`text-black bg-blue-400 ${uploading ? "bg-gray-300 cursor-not-allowed" : ""}`}>
                             Upload
                     </button>
             </div>
