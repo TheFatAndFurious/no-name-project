@@ -6,7 +6,7 @@ interface InputProps {
     name?: string
     value?: string
     id?: string
-    onChange: (event: ChangeEvent<HTMLInputElement>) => void 
+    onChange?: (event: ChangeEvent<HTMLInputElement>) => void 
 }
 export default function Input({placeholder, type, name,id,  onChange}: InputProps) {
     return (
