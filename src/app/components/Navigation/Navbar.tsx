@@ -58,26 +58,13 @@ export default function Navbar({ session }: NavbarProps) {
           <li>
             <a>Item 1</a>
           </li>
-          <li tabIndex={0}>
-            <details>
-              <summary>Parent</summary>
-              <ul className="p-2">
-                <li>
-                  <a>Submenu 1</a>
-                </li>
-                <li>
-                  <a>Submenu 2</a>
-                </li>
-              </ul>
-            </details>
-          </li>
           { session && 
           <li>
             <Link href="/restricted">Galeries</Link>
           </li>
           }
           <li>
-            <a>Contact</a>
+            <Link href="/contact">Contact</Link>
           </li>
         </ul>
       </div>
