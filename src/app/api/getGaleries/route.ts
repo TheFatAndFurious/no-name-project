@@ -6,7 +6,6 @@ export async function POST(res: NextResponse){
 
     try {
         const { data, error } = await supabase.from("galeries_pictures").insert({id_galeries: 26, id_pictures: 1});
-        console.log("data:", data, "ERROR:", error);
         NextResponse.json(data);
         } 
     catch (error) {

@@ -9,16 +9,18 @@ export default async function Homepage() {
   const {
     data: { session },
   } = await supabase.auth.getSession();
+  console.log(session)
 
   if (!session) {
     redirect("../unauthenticated");
   }
 
+  const userName = session.user.email;
+  console.log(userName)
+
   return (
     <div>
-      <h1>Homepage</h1>
-      <a href="./testDePapa">clic clic</a>
-      <LogOut />
+      <h1>Bienvenue {userName}</h1>
       <DisplayGaleries />
     </div>
   );

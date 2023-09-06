@@ -25,7 +25,6 @@ export default function Login() {
         email: email,
         password: password,
       });
-      console.log(data.session); //setIsLoggedIn(true)
       if (!data.session) {
         return setMessage("NOT LOGGED IN");
       } else {

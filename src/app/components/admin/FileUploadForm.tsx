@@ -6,20 +6,24 @@ import ImagePreview from "./ImagePreview"
 import { supabase } from "../../../../supabase"
 import { Gallery } from "@/types"
 import { attributeGallery } from "@/utils/supabase"
+import Wrapper from "../Wrapper"
 
+
+//TODO: ADD THE OPTION TO UPLOAD A PICTURE WITHOUT CHOOSING A CATEGORY
+//TODO: BETTER FEEDBACK FOR THE ADMIN
 
 export default function FileUploadForm (){
     const [images, setImages] = useState<File[]>([])
     const [uploading, setUploading] = useState(false)
     const [error, setError] = useState<string | null>(null)
     const [galeries, setGaleries] = useState<Gallery[]>([])
-    const [selectedGallery, setSelectedGallery] = useState<string| null>(null)
+    const [selectedGallery, setSelectedGallery] = useState<string | null>(null)
 
 
     useEffect(() => {
         async function getGaleries() {
             const { data } = await supabase.from('galeries').select('*')
-            setGaleries(data || [])
+            setGaleries(data || []) 
     }
         getGaleries()
     }, [])
@@ -125,6 +129,8 @@ export default function FileUploadForm (){
 
 
     return (
+        <Wrapper>
+            <h1 className="underline">TELEVERSEMENT DE PHOTOS</h1>
         <form className="w-full" onSubmit={handleSubmit}>
             <div className="flex justify-between">
                 <CustomFileSelector
@@ -149,6 +155,7 @@ export default function FileUploadForm (){
                 </select>
             </div>
         </form>
+        </Wrapper>
     )
 }
 
