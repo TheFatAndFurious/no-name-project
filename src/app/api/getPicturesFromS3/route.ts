@@ -18,7 +18,7 @@ export async function GET(req: NextRequest, res: NextResponse) {
         return NextResponse.json({ success: true, files: contentList });
     } catch (error) {
         console.error("Error listing objects from S3:", error);
-        return NextResponse.json({ success: false, error: error.message });
+        return NextResponse.json({ success: false, error: "bad business logic"});
     }
  
 }
