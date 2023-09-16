@@ -1,5 +1,5 @@
 import Link from "next/link";
-import EmailSignUp from "../components/Auth/signup";
+import EmailSignUp from "../components/auth/signup";
 import Wrapper from "../components/Wrapper";
 
 export default function SignUp() {

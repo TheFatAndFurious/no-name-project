@@ -1,5 +1,5 @@
-import LogOut from "../Auth/signout";
-import Login from "../Auth/login";
+import LogOut from "../auth/signout";
+import Login from "../auth/login";
 import { Session } from "@supabase/supabase-js";
 import Link from "next/link";
 
@@ -60,7 +60,7 @@ export default function Navbar({ session }: NavbarProps) {
           </li>
           { session && 
           <li>
-            <Link href="/restricted">Galeries</Link>
+            <Link href="/galeries">Galeries</Link>
           </li>
           }
           <li>

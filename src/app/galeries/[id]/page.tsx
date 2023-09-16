@@ -3,31 +3,26 @@
 import { getGaleries } from "@/utils/supabase"
 import { useEffect, useState } from "react"
 import { supabase } from "../../../../supabase"
+import { getGallery, useGallery } from "@/utils/hooks/hooks"
+import Wrapper from "@/app/components/Wrapper"
+import DisplayGallery from "@/app/components/pictures/Gallery"
 
 
 export default function Page({ params }: { params : { id : string } }) {
-    const [pictures, setPictures] = useState(null)
-    console.log(typeof(params.id))
-    useEffect(() => {
-        async function getPictures(id) {
-            try {
-                const { data } = await supabase.from("pictures").select("*").eq("id", id)
-                setPictures(data)
-            } catch (error) {
-                console.error(error)
-            }
-        }
-        getPictures(Number(params.id))
-    }, [params.id])
-console.log(pictures)
+    
+    const ids =Number(params.id)
+    const { signedUrls, isLoading } = useGallery(ids)
+    console.log(signedUrls)
+
+    if (isLoading) {
+        return <div>Loading...</div>
+    }
+    
     return (
         <>
-            Test {params.id}
-            {pictures?.map((picture) => (
-                <div key={picture.id}>
-                    <p>{picture.url}</p>
-                </div>
-            ))}
+        <DisplayGallery>
+            {signedUrls?.url?.map(url => <img src={url} loading="lazy" />)}
+        </DisplayGallery>
         </>
     )
     }

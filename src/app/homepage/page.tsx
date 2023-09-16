@@ -1,7 +1,7 @@
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
-import LogOut from "../components/Auth/signout";
+import LogOut from "../components/auth/signout";
 import DisplayGaleries from "../components/admin/displayGaleries";
 
 export default async function Homepage() {
