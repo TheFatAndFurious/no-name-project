@@ -6,7 +6,7 @@ import { createMiddlewareClient } from "@supabase/auth-helpers-nextjs";
 
 export async function middleware(req: NextRequest) {
   const adminPath = "/admin";
-  const restricted = "/app";
+  const restricted = "/galeries";
 
   const res = NextResponse.next();
   const supabase = createMiddlewareClient({ req, res });
