@@ -23,7 +23,6 @@ export default function galeries () {
          async function fetchData() {
              try {
                  const data = await getGaleries()
-                 console.log("🚀 ~ file: page.tsx:26 ~ fetchData ~ data:", data)
                  const test = await getGaleryCoverPics()
                  if (test) {
                      const urls = test.map(url => url.pictures_id)
