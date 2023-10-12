@@ -4,9 +4,9 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest, res: NextResponse) {
 
-    const body = await req.json()
-    const pictures = body.pictures[0].pictures
-    console.log("pictures:", pictures)
+    const body = await req.json();
+    console.log("🚀 ~ file: route.tsx:8 ~ POST ~ body:", body)
+    const pictures = body.pictures
 
     
     const s3 = new S3Client({
@@ -29,4 +29,4 @@ export async function POST(req: NextRequest, res: NextResponse) {
     }
     console.log("list of urls: ", listOfUrls)
     return NextResponse.json({ success: true,  url:listOfUrls })
-}    
+}  

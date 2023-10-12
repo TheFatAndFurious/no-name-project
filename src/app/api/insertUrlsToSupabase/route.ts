@@ -1,4 +1,5 @@
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs"
+import { PostgrestError } from "@supabase/supabase-js";
 import { cookies } from "next/headers"
 import { NextRequest, NextResponse } from "next/server";
 
@@ -10,7 +11,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
     const urlsToInsert = await req.json() 
 
     try  
-        {const { data, error } = await supabase
+        {const { data, error } : {data: any, error: PostgrestError | null} = await supabase
         .from("pictures")
         .insert(urlsToInsert.pictures)
         .select("id")
@@ -23,6 +24,6 @@ export async function POST(req: NextRequest, res: NextResponse) {
         }
         catch (error) {
             console.error(error)
-            return NextResponse.json({success: false}, {error: error.message})
+            return NextResponse.json({success: false}, {error: error.message});
         }
 }

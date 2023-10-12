@@ -45,7 +45,7 @@ export default function EmailSignUp({onSignUpSuccess}: SignUpProps) {
             type="email"
             name="email"
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="Saisissez votre adresse mail ici"
+            placeholder="ex: bernard.dupontt@free.fr"
           />
           <Label htmlFor="password">Mot de passe</Label>
           <Input

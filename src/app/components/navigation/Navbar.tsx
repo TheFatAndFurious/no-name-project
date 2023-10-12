@@ -50,7 +50,7 @@ export default function Navbar({ session }: NavbarProps) {
             </li>
           </ul>
         </div>
-        <Link href="/" className="btn btn-ghost normal-case text-xl">LB got pics</Link>
+        <Link href="/" className="btn btn-ghost normal-case text-xl">No-Name-Project</Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
