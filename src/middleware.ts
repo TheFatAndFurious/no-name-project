@@ -20,7 +20,7 @@ export async function middleware(req: NextRequest) {
         return NextResponse.redirect(redirectUrl);
     }
   }
-  if (req.nextUrl.pathname.startsWith(adminPath) && session?.user.role !== "authenticated") {
+  if (req.nextUrl.pathname.startsWith(adminPath) && session?.user.role !== "admin") {
   const redirectUrl = req.nextUrl.clone();
   redirectUrl.pathname = "/unauthenticated";
   return NextResponse.redirect(redirectUrl);

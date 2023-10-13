@@ -1,5 +1,10 @@
-export default function Hero () {
+import { cookies } from "next/headers";
+import { supabase } from "../../../supabase";
+import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 
+export default async function Hero () {
+
+ 
     return (
         <div className="hero max-h-screen" style={{backgroundImage: 'https://picsum.photos/200/300'}}>
             <div className="hero-overlay bg-opacity-60"></div>

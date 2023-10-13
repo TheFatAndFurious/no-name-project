@@ -32,18 +32,10 @@ export default function Navbar({ session }: NavbarProps) {
             className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-primary   rounded-box w-52"
           >
             <li>
-              <a>Item 1</a>
+              <Link href="/home">Home</Link>
             </li>
             <li>
-              <a>Parent</a>
-              <ul className="p-2">
-                <li>
-                  <a>Submenu 1</a>
-                </li>
-                <li>
-                  <a>Submenu 2</a>
-                </li>
-              </ul>
+              <Link href="/galeries">Galeries</Link>
             </li>
             <li>
               <a>Contact</a>

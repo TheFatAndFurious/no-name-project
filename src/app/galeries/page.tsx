@@ -1,6 +1,5 @@
 'use client'
 
-import { Gallery } from "@/types"
 import { fetchSignedUrls, getGaleries, getGaleryCoverPics, getPictureUrlFromItsId } from "@/utils/supabase"
 import { useEffect, useState } from "react"
 import Wrapper from "../components/Wrapper"
@@ -50,7 +49,7 @@ export default function galeries () {
      if (loading) return <Loading />
     return (
         <Wrapper>
-        <div className="flex">
+        <div className="flex flex-col md:flex-row">
             {galeries.map((item) => (
                 <div key={item.id}>
                     <Link href={`/galeries/${item.id}`}>
